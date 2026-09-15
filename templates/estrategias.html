@@ -1,0 +1,352 @@
+{% extends "base.html" %}
+{% block titulo %}Michael Myers x Sobreviventes — Guia Halloween{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/abas.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+<section class="secao reveal">
+  <a href="{{ url_for('guias') }}" class="voltar">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Todos os guias
+  </a>
+  <h1 class="titulo-tremulo">Michael Myers x Sobreviventes</h1>
+  <p class="guia-resumo">Poderes, armas, skins e missões do killer — e como os sobreviventes fogem dele. Tudo num só lugar, com os desafios pra completar.</p>
+</section>
+
+<div class="abas abas-principais">
+  <div class="abas-botoes abas-botoes-grandes" role="tablist">
+    <button class="aba-botao ativo" data-alvo="michael" role="tab" aria-selected="true">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c-4 0-6 3-6 6.5 0 1 .2 1.9.6 2.7C5 13.4 3 15.8 3 19h18c0-3.2-2-5.6-3.6-6.8.4-.8.6-1.7.6-2.7C18 6 16 3 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9.3" cy="11.5" r="1.1" fill="currentColor"/><circle cx="14.7" cy="11.5" r="1.1" fill="currentColor"/></svg>
+      Michael Myers
+    </button>
+    <button class="aba-botao" data-alvo="sobreviventes" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.6"/><path d="M4 20c0-3.6 3.4-6.5 8-6.5s8 2.9 8 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Sobreviventes
+    </button>
+    <button class="aba-botao" data-alvo="desafios" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 14.4 8.6 21 9.3 16 13.7 17.5 20.3 12 16.8 6.5 20.3 8 13.7 3 9.3 9.6 8.6 12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      Desafios
+    </button>
+  </div>
+
+  <!-- ===================== MICHAEL MYERS ===================== -->
+  <div class="aba-painel ativo" data-painel="michael">
+
+    <div class="abas abas-sub">
+      <div class="abas-botoes" role="tablist">
+        <button class="aba-botao ativo" data-alvo="poderes" role="tab" aria-selected="true">Poderes e Perks</button>
+        <button class="aba-botao" data-alvo="armas-michael" role="tab" aria-selected="false">Armas</button>
+        <button class="aba-botao" data-alvo="objetivo" role="tab" aria-selected="false">Objetivo</button>
+        <button class="aba-botao" data-alvo="skins" role="tab" aria-selected="false">Skins</button>
+        <button class="aba-botao" data-alvo="offline" role="tab" aria-selected="false">Missões Offline</button>
+      </div>
+
+      <div class="aba-painel ativo" data-painel="poderes">
+        <h2>Traços fixos</h2>
+        <p>O Michael sempre começa a partida com essas duas habilidades — elas não são opcionais.</p>
+        <div class="grade-cartoes">
+          <div class="cartao-info">
+            <h3>Killer Sense</h3>
+            <p>Muda pra uma visão em primeira pessoa que melhora sua percepção de alvos próximos. Foque num sobrevivente pra acumular <strong>Stalk</strong> (perseguição).</p>
+          </div>
+          <div class="cartao-info">
+            <h3>Shape Jump</h3>
+            <p>Movimento pelas sombras enquanto fica escondido dos civis, dando acesso a opções como o Shape Dash. Só pode entrar ou sair do Shape Jump coberto pela escuridão ou fora da linha de visão de um morador.</p>
+          </div>
+        </div>
+
+        <h2>Habilidades selecionáveis <span class="etiqueta">escolha 3 de 6</span></h2>
+        <div class="grade-cartoes">
+          <div class="cartao-info">
+            <h3>Reality Tear</h3>
+            <p>Ignora a regra de luz do Shape Jump: o Michael pode entrar ou sair da sombra a qualquer momento, mesmo na luz ou visível.</p>
+          </div>
+          <div class="cartao-info">
+            <h3>Blackout</h3>
+            <p>Corta a energia num raio ao redor do Michael, desligando luzes e apagando veículos temporariamente — inclusive queimando o motor de um carro.</p>
+          </div>
+          <div class="cartao-info">
+            <h3>Detection Pulse</h3>
+            <p>Revela temporariamente a posição de moradores numa área ao redor do Michael.</p>
+          </div>
+          <div class="cartao-info cartao-info-bloqueado">
+            <h3>Evil Presence</h3>
+            <p>Desbloqueada por nível de killer. Detalhes específicos ainda escassos nas fontes atuais.</p>
+          </div>
+          <div class="cartao-info cartao-info-bloqueado">
+            <h3>Shadow Strike</h3>
+            <p>Desbloqueada por nível de killer.</p>
+          </div>
+          <div class="cartao-info cartao-info-bloqueado">
+            <h3>Shape Mines</h3>
+            <p>Desbloqueada por nível de killer.</p>
+          </div>
+        </div>
+
+        <h2>Bloodthirst</h2>
+        <p>Medidor de 3 níveis que sobe conforme você mata. Em níveis mais altos o Michael fica <strong>mais resistente e mais difícil de atordoar</strong>, além de desbloquear execuções mais fortes (de estrangulamento à mão até finalizações usando o ambiente).</p>
+      </div>
+
+      <div class="aba-painel" data-painel="armas-michael">
+        <h2>Arsenal do Michael</h2>
+        <p>Ele começa só com a faca. As outras três são desbloqueadas conforme o <strong>nível de killer</strong> sobe.</p>
+        <div class="grade-cartoes">
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 5 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 4 20 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20l3-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Faca de cozinha</h3>
+            <p>Arma padrão, disponível desde o início. Só corpo a corpo.</p>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 13 5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11 13 15 3 21 7 17 15Z" fill="currentColor"/></svg>
+            </div>
+            <h3>Machado de lenhador <span class="etiqueta">nível 40</span></h3>
+            <p>Ataque mais lento, porém mais forte. Ótimo pra arrombar portas e destruir rápido o Carro/Sedan.</p>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 13c3-8 17-8 20 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 6v16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Picareta <span class="etiqueta">nível 60</span></h3>
+            <p>Mesma categoria do machado: lenta e pesada, boa pra arrombar portas e sabotar veículos de fuga.</p>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v6M12 3v6M17 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7 9c0 3 2 4 5 4s5-1 5-4" stroke="currentColor" stroke-width="1.6"/><path d="M12 13v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Forcado <span class="etiqueta">nível 80</span></h3>
+            <p>Diferente das outras: pode ser arremessado à distância, além do golpe corpo a corpo padrão.</p>
+          </div>
+        </div>
+        <p class="dica-caixa">Armas usadas pelos <strong>sobreviventes</strong> contra o Michael (taco, chave inglesa, atiçador etc.) o derrubam temporariamente, mas nunca matam — veja a aba Sobreviventes → Itens.</p>
+      </div>
+
+      <div class="aba-painel" data-painel="objetivo">
+        <h2>O que o Michael precisa fazer</h2>
+        <ul class="lista-objetivos">
+          <li>Eliminar todos os moradores antes da polícia chegar, ou impedir que os sobreviventes completem as fugas a tempo.</li>
+          <li><strong>Esconda os corpos:</strong> banheiras, armários, arbustos ou porta-malas de carro. Corpo exposto faz os moradores ligarem pra polícia.</li>
+          <li><strong>Destrua os telefones fixos</strong> da casa antes ou logo depois de matar, pra impedir chamadas de emergência.</li>
+          <li>Use o <strong>Stalk</strong> pra focar alvos e subir o Bloodthirst — o poder dele vem de observar, não de confrontar direto.</li>
+        </ul>
+      </div>
+
+      <div class="aba-painel" data-painel="skins">
+        <h2>As 8 skins do Michael</h2>
+        <div class="grade-cartoes">
+          <div class="cartao-info"><h3>1978 (clássica)</h3><p>Visual inicial, disponível desde o começo.</p></div>
+          <div class="cartao-info"><h3>Phantom</h3><p>Desbloqueada fazendo pré-venda de qualquer edição do jogo.</p></div>
+          <div class="cartao-info"><h3>Inmate</h3><p>Exclusiva da Digital Deluxe Edition — não dá pra farmar dentro do jogo.</p></div>
+          <div class="cartao-info"><h3>Ghost</h3><p>Complete <strong>todos</strong> os Chapter Challenges do Modo História (Michael's Story).</p></div>
+          <div class="cartao-info"><h3>Stitched</h3><p>Complete "Legend of Haddonfield" na coleção de Desafios Progressivos 1978 Michael Myers.</p></div>
+          <div class="cartao-info"><h3>Clown</h3><p>Alcance o Profile Prestige Nível 1.</p></div>
+          <div class="cartao-info"><h3>Scorched</h3><p>Alcance o Michael Myers Prestige Nível 1.</p></div>
+          <div class="cartao-info"><h3>Samhain</h3><p>Complete o Tier 5 de "The Shape's Approval" na coleção Shape Mastery.</p></div>
+        </div>
+      </div>
+
+      <div class="aba-painel" data-painel="offline">
+        <h2>Michael's Story — modo offline/história</h2>
+        <p>6 fases jogáveis narradas pelo Dr. Loomis: o Prólogo (Smith's Grove) + Capítulos 1 a 5. Também dá pra jogar partidas privadas contra bots.</p>
+        <ol class="lista-capitulos">
+          <li><strong>Prólogo — Smith's Grove:</strong> você joga como o Michael e precisa escapar da instalação onde estava preso, vigiado pelo Orderly.</li>
+          <li><strong>Capítulo 1 — Main Street:</strong> pegue a máscara do Michael, siga os alvos nomeados e termine a sequência no cemitério de Judith Myers.</li>
+          <li><strong>Capítulo 2 — Returning Home:</strong> complete o flashback da casa dos Myers primeiro, depois siga os alvos do presente até o objetivo de fuga aparecer.</li>
+          <li><strong>Capítulos 3 a 5:</strong> continuam a história seguindo o mesmo padrão de alvos nomeados e objetivos guiados pelo HUD.</li>
+        </ol>
+        <p class="dica-caixa">Quando o HUD apontar um novo destino, alvo nomeado ou rota de fuga, siga ele em vez de tentar limpar a área toda. O jogo tem <strong>3 finais diferentes</strong> que refletem interpretações diferentes da natureza do Michael — não dá pra rejogar só o capítulo final pra ver os 3, precisa refazer a campanha.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SOBREVIVENTES ===================== -->
+  <div class="aba-painel" data-painel="sobreviventes">
+
+    <div class="abas abas-sub">
+      <div class="abas-botoes" role="tablist">
+        <button class="aba-botao ativo" data-alvo="fugir" role="tab" aria-selected="true">Como Fugir</button>
+        <button class="aba-botao" data-alvo="itens" role="tab" aria-selected="false">Itens</button>
+        <button class="aba-botao" data-alvo="npcs" role="tab" aria-selected="false">NPCs</button>
+        <button class="aba-botao" data-alvo="tipos-fuga" role="tab" aria-selected="false">Tipos de Fuga</button>
+      </div>
+
+      <div class="aba-painel ativo" data-painel="fugir">
+        <h2>Estratégia geral de fuga</h2>
+        <ul class="lista-objetivos">
+          <li><strong>Procure cedo:</strong> ache armas e ferramentas de fuga antes do Michael te achar.</li>
+          <li><strong>Controle o medo:</strong> álcool reduz o medo; o baseado (joint) reduz medo mas faz barulho e chama atenção.</li>
+          <li><strong>Divida funções:</strong> uma pessoa cuida dos telefones enquanto outras conferem as saídas.</li>
+          <li><strong>Nunca lute sozinho:</strong> combate deve ser só pra resgate, evite enfrentar o Michael isolado.</li>
+          <li><strong>Se for marcado como alvo (Stalk),</strong> geralmente vale mais fugir do que terminar o que você estava fazendo.</li>
+          <li><strong>Depois de derrubar o Michael, recue:</strong> a habilidade Reality Tear permite ele reaparecer perto de você logo depois.</li>
+          <li><strong>Use luz a seu favor:</strong> iluminação direta limita as opções de reposicionamento normais dele.</li>
+        </ul>
+        <p class="dica-caixa">Veja o passo a passo detalhado de cada rota no guia <a href="{{ url_for('guia_detalhe', slug='todas-as-fugas') }}">Todas as rotas de fuga</a>.</p>
+      </div>
+
+      <div class="aba-painel" data-painel="itens">
+        <h2>Itens pra escapar do agarrão</h2>
+        <div class="grade-cartoes">
+          <div class="cartao-info"><h3>Ancient Amulet</h3><p>Protege automaticamente de um agarrão ou ataque uma vez, depois se quebra.</p></div>
+          <div class="cartao-info"><h3>Ice Pick / Pocket Knife</h3><p>Apunhala pra se soltar do agarrão do Michael.</p></div>
+          <div class="cartao-info"><h3>Lawn Dart</h3><p>Arremessável que também apunhala pra escapar.</p></div>
+        </div>
+
+        <h2>Distrações e arremessáveis</h2>
+        <div class="grade-cartoes">
+          <div class="cartao-info"><h3>Fragile Hourglass</h3><p>Jogado no Michael caído, aumenta o tempo que ele demora pra levantar.</p></div>
+          <div class="cartao-info"><h3>Fire Crackers</h3><p>Cria um flash cegante e atordoa temporariamente.</p></div>
+          <div class="cartao-info"><h3>Tijolo / Pedra / Bola de baseball</h3><p>Causa dano ou atordoa.</p></div>
+        </div>
+
+        <h2>Luz contra o Shape Jump</h2>
+        <div class="grade-cartoes">
+          <div class="cartao-info"><h3>Lanterna / Brass Lantern</h3><p>Revela o Michael no minimapa durante o Shape Jump se o facho de luz acertar ele.</p></div>
+          <div class="cartao-info"><h3>Sinalizador / Flare Gun</h3><p>Cega o Michael e impede ele de se deslocar pelas sombras.</p></div>
+        </div>
+
+        <h2>Cura</h2>
+        <div class="grade-cartoes">
+          <div class="cartao-info"><h3>Healing Spray</h3><p>Restaura vida sua ou de um aliado.</p></div>
+          <div class="cartao-info"><h3>Med-Kit</h3><p>Cura completa, mas demora pra usar.</p></div>
+        </div>
+
+        <h2>Armas contra o Michael</h2>
+        <p>Todas essas <strong>derrubam o Michael temporariamente, mas nunca matam</strong> — servem pra ganhar distância, não pra encarar ele de frente.</p>
+        <div class="grade-cartoes grade-cartoes-compacta">
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 5 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 4 20 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20l3-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Faca de cozinha</h3>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 17 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M17 7c1.2-1.2 2.8-1.2 4 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Taco de baseball</h3>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 18 15 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 20l2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <h3>Cassetete</h3>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6a4 4 0 1 0-5.3 5.3L4 16.6 7.4 20l5.3-4.7A4 4 0 0 0 14 6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Chave inglesa</h3>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 13 5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11 13 15 3 21 7 17 15Z" fill="currentColor"/></svg>
+            </div>
+            <h3>Machado</h3>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 13c3-8 17-8 20 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 6v16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Picareta</h3>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v6M12 3v6M17 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7 9c0 3 2 4 5 4s5-1 5-4" stroke="currentColor" stroke-width="1.6"/><path d="M12 13v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Forcado</h3>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 20 16 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 10c1-1 1-2.5 2.5-3s2.5 1.5 1.5 2.8c-.8 1-2.2.7-2.7-.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Atiçador de lareira</h3>
+          </div>
+        </div>
+        <p class="dica-caixa">Armas de fogo (Revólver, Shotgun, Rifle) causam mais dano — um tiro de rifle na cabeça derruba ele instantaneamente.</p>
+      </div>
+
+      <div class="aba-painel" data-painel="npcs">
+        <h2>Sobreviventes jogáveis x Moradores (NPC)</h2>
+        <div class="grade-cartoes">
+          <div class="cartao-info">
+            <h3>Sobreviventes jogáveis</h3>
+            <p>10 personagens no lançamento (Jennifer, Tanya, Rachel, Marcus, Thomas, Eric, Bob, Lynda, Annie e Laurie) + 2 exclusivos da Digital Deluxe (Richard e Alexis). Cada um tem estatísticas próprias em 4 categorias: <strong>Atletismo, Personalidade, Desenvoltura e Capacidade</strong>.</p>
+          </div>
+          <div class="cartao-info">
+            <h3>Moradores (NPC)</h3>
+            <p>Não são personagens jogáveis — vivem espalhados por Haddonfield, reagem a conversas e podem ser instruídos a se esconder, seguir um jogador ou ajudar a chamar a polícia. Fogem quando assustados, revidam quando encurralados e ligam pra polícia assim que sentem perigo.</p>
+          </div>
+        </div>
+
+        <h2>Diferença entre NPC normal e especial</h2>
+        <p>Alguns moradores são marcados no mapa como <strong>alvos de alto valor</strong> — valem muito mais pontos no placar do que um NPC comum. Priorize proteger esses moradores marcados em vez de tratar todo mundo como igual.</p>
+      </div>
+
+      <div class="aba-painel" data-painel="tipos-fuga">
+        <h2>Os 5 tipos de fuga</h2>
+        <div class="grade-cartoes">
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12 12 6l8 6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 12v7h16v-7" stroke="currentColor" stroke-width="1.6"/><path d="M4 12h16" stroke="currentColor" stroke-width="1.6"/><path d="M9 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Porão (Storm Cellar)</h3>
+            <p>A mais rápida. Precisa de Escape Key ou Bolt Cutters. Tem 2 no mapa por partida.</p>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Fusível (Gate)</h3>
+            <p>Fica na borda do mapa. Precisa de um Fuse (raro) + Escape Key ou Bolt Cutters. A mais difícil de preparar.</p>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16 5.5 10.5c.3-1 1.2-1.5 2.2-1.5h8.6c1 0 1.9.5 2.2 1.5L20 16" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="3" y="16" width="18" height="3.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="7.5" cy="19.5" r="1.3" stroke="currentColor" stroke-width="1.4"/><circle cx="16.5" cy="19.5" r="1.3" stroke="currentColor" stroke-width="1.4"/></svg>
+            </div>
+            <h3>Carro (Sedan)</h3>
+            <p>Precisa de Repair Kit, Gas Can e Sedan Key. A mais complexa, com 2 minigames.</p>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v3c0 1-1 2-2 2C11 20 4 13 4 6c0-1 1-2 2-2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Polícia (chamada)</h3>
+            <p>Não precisa de item nenhum — só ligar pro telefone. Demora ~6 minutos pra chegar.</p>
+          </div>
+          <div class="cartao-info">
+            <div class="cartao-info-icone">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="18" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 12h18" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="17.3" r="1.4" stroke="currentColor" stroke-width="1.3"/><circle cx="17" cy="17.3" r="1.4" stroke="currentColor" stroke-width="1.3"/><path d="M3 9l2-3h6l1 3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Van policial</h3>
+            <p>Condicional: só existe se o Michael matar os policiais que atenderam a chamada. Precisa das chaves do carro de um policial morto.</p>
+          </div>
+        </div>
+        <p class="dica-caixa">Passo a passo completo de cada uma no guia <a href="{{ url_for('guia_detalhe', slug='todas-as-fugas') }}">Todas as rotas de fuga</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== DESAFIOS ===================== -->
+  <div class="aba-painel" data-painel="desafios">
+    <h2>Sistema de desafios</h2>
+    <div class="grade-cartoes">
+      <div class="cartao-info">
+        <h3>Desafios de Capítulo (Chapter Challenges)</h3>
+        <p>O Prólogo e cada um dos 5 capítulos do Modo História têm <strong>6 tarefas opcionais</strong>: ficar não detectado, usar certas armas, fazer execuções especiais ou eliminar alvos extras. Completar todos contribui pra progressão compartilhada e desbloqueios cosméticos — inclusive a skin <strong>Ghost</strong>.</p>
+      </div>
+      <div class="cartao-info">
+        <h3>Desafios Progressivos</h3>
+        <p>Ligados a personagens civis específicos, skins do Michael e tipos de arma. Os objetivos precisam ser cumpridos <strong>em sequência</strong> — as etapas seguintes ficam bloqueadas até completar as anteriores.</p>
+      </div>
+    </div>
+    <p class="dica-caixa">Se perder um objetivo de capítulo, vale mais rejogar aquele capítulo na hora do que deixar uma lista de pendências espalhada pra depois. Completar todos os desafios de história rende uma cosmética lendária.</p>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/abas.js') }}"></script>
+{% endblock %}

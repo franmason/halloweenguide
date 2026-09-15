@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block titulo %}Mapas — Guia Halloween{% endblock %}
+
+{% block conteudo %}
+<section class="secao reveal">
+  <h1>Todos os mapas</h1>
+  <div class="grade-mapas">
+    {% for mapa in mapas %}
+    <a class="card-mapa" href="{{ url_for('mapa_detalhe', slug=mapa.slug) }}">
+      <img src="{{ url_for('static', filename='images/' + mapa.imagem) }}" alt="Mapa {{ mapa.nome }}" loading="lazy">
+      <span class="card-mapa-nome">{{ mapa.nome }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

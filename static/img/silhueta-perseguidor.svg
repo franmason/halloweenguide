@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1000" role="img" aria-label="Ilustração de um perseguidor mascarado sob a lua">
+  <defs>
+    <radialGradient id="fundoCeu" cx="50%" cy="22%" r="85%">
+      <stop offset="0%" stop-color="#1c1f2e"/>
+      <stop offset="45%" stop-color="#0e0f16"/>
+      <stop offset="100%" stop-color="#050508"/>
+    </radialGradient>
+    <radialGradient id="luaGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#eef1ff" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="#c7cdf0" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#c7cdf0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mascaraGrad" cx="42%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#efe9da"/>
+      <stop offset="70%" stop-color="#d9d0ba"/>
+      <stop offset="100%" stop-color="#b8ad94"/>
+    </radialGradient>
+    <linearGradient id="luzPorta" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb26b" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ffb26b" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="laminaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b8f9c"/>
+      <stop offset="50%" stop-color="#e7e9ee"/>
+      <stop offset="100%" stop-color="#6d707a"/>
+    </linearGradient>
+    <filter id="borrao1"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="borrao2"><feGaussianBlur stdDeviation="28"/></filter>
+    <filter id="borraoLeve"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="graoFilme" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="ruido"/>
+      <feColorMatrix in="ruido" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="1000" fill="url(#fundoCeu)"/>
+
+  <circle cx="640" cy="175" r="180" fill="url(#luaGlow)"/>
+  <circle cx="640" cy="175" r="88" fill="#e9ecf7"/>
+  <circle cx="612" cy="150" r="10" fill="#c9cde0" opacity="0.5"/>
+  <circle cx="660" cy="195" r="16" fill="#c9cde0" opacity="0.4"/>
+  <circle cx="655" cy="140" r="7" fill="#c9cde0" opacity="0.45"/>
+
+  <ellipse cx="520" cy="185" rx="230" ry="46" fill="#0e0f16" opacity="0.55" filter="url(#borrao2)"/>
+  <ellipse cx="760" cy="230" rx="170" ry="36" fill="#0e0f16" opacity="0.45" filter="url(#borrao2)"/>
+
+  <polygon points="450,340 400,620 500,620" fill="url(#luzPorta)" opacity="0.6" filter="url(#borrao2)"/>
+
+  <g filter="url(#borrao1)" opacity="0.85">
+    <ellipse cx="200" cy="900" rx="260" ry="60" fill="#aab2c9" opacity="0.10"/>
+    <ellipse cx="620" cy="930" rx="320" ry="70" fill="#aab2c9" opacity="0.12"/>
+    <ellipse cx="450" cy="960" rx="420" ry="55" fill="#aab2c9" opacity="0.14"/>
+  </g>
+
+  <ellipse cx="450" cy="915" rx="120" ry="22" fill="#000" opacity="0.55" filter="url(#borraoLeve)"/>
+
+  <g>
+    <polygon points="405,910 375,760 340,900 320,905 355,745 350,700 550,700 545,745 580,905 560,900 525,760 495,910" fill="#0b0b10"/>
+
+    <polygon points="360,560 355,700 545,700 540,560 505,530 395,530" fill="#101018"/>
+    <polygon points="360,560 355,700 375,700 378,565" fill="#171721" opacity="0.7"/>
+
+    <path d="M360 560 C340 580 325 650 335 705 L360 700 C352 650 358 590 372 565 Z" fill="#0b0b10"/>
+    <path d="M540 560 C562 582 585 660 588 715 C588 725 566 730 558 722 C558 690 550 615 528 565 Z" fill="#0b0b10"/>
+
+    <rect x="330" y="700" width="26" height="14" rx="4" fill="#0b0b10"/>
+    <rect x="560" y="712" width="30" height="16" rx="4" fill="#0b0b10"/>
+
+    <g transform="translate(555,700) rotate(24)">
+      <rect x="0" y="-7" width="64" height="15" rx="2" fill="url(#laminaGrad)"/>
+      <rect x="60" y="-4.5" width="6" height="10" fill="#f4f5f8" opacity="0.9"/>
+      <rect x="-26" y="-10" width="30" height="21" rx="4" fill="#1c1a17"/>
+    </g>
+
+    <rect x="432" y="500" width="36" height="42" rx="10" fill="#0e0e14"/>
+
+    <path d="M394 442 C392 402 412 366 450 364 C488 366 508 402 506 442 C505 466 498 486 488 500 C478 513 465 519 450 519 C435 519 422 513 412 500 C402 486 395 466 394 442 Z" fill="url(#mascaraGrad)"/>
+
+    <ellipse cx="426" cy="448" rx="9" ry="13" fill="#131114"/>
+    <ellipse cx="474" cy="448" rx="9" ry="13" fill="#131114"/>
+    <ellipse cx="426" cy="444" rx="2.6" ry="3.6" fill="#c9453a" opacity="0.8"/>
+    <ellipse cx="474" cy="444" rx="2.6" ry="3.6" fill="#c9453a" opacity="0.8"/>
+
+    <line x1="450" y1="462" x2="450" y2="480" stroke="#a89c82" stroke-width="1.6" opacity="0.35"/>
+    <line x1="450" y1="494" x2="450" y2="500" stroke="#847a66" stroke-width="1.6" opacity="0.3"/>
+  </g>
+
+  <rect width="900" height="1000" filter="url(#graoFilme)" opacity="0.5"/>
+  <rect width="900" height="1000" fill="url(#fundoCeu)" opacity="0" />
+  <radialGradient id="vinheta" cx="50%" cy="45%" r="75%">
+    <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000" stop-opacity="0.65"/>
+  </radialGradient>
+  <rect width="900" height="1000" fill="url(#vinheta)"/>
+</svg>

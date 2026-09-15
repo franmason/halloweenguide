@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block titulo %}Guia Halloween: The Game{% endblock %}
+
+{% block conteudo %}
+<section class="hero hero-macabro reveal">
+  <div class="hero-fundo" aria-hidden="true">
+    <span class="orbe orbe-laranja"></span>
+    <span class="orbe orbe-roxo"></span>
+    <span class="orbe orbe-sangue"></span>
+    <span class="hero-grade"></span>
+  </div>
+  <div class="hero-texto">
+    <span class="hero-selo">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c-4 0-6 3-6 6.5 0 1 .2 1.9.6 2.7C5 13.4 3 15.8 3 19h18c0-3.2-2-5.6-3.6-6.8.4-.8.6-1.7.6-2.7C18 6 16 3 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      Guia não-oficial da comunidade
+    </span>
+    <h1>Sobreviva a <span class="texto-gradiente">Haddonfield</span></h1>
+    <p>Mapas responsivos, rotas de fuga e o guia completo do Michael Myers e dos sobreviventes — tudo num só lugar, em qualquer aparelho.</p>
+    <div class="hero-acoes">
+      <a href="#mapas" class="botao botao-primario">
+        Ver mapas
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="{{ url_for('estrategias') }}" class="botao botao-secundario">Guia completo</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>4</strong><span>mapas</span></div>
+      <div class="hero-stat"><strong>{{ guias|length }}</strong><span>guias</span></div>
+      <div class="hero-stat"><strong>5</strong><span>rotas de fuga</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="secao reveal" id="mapas">
+  <h2>Mapas</h2>
+  <div class="grade-mapas">
+    {% for mapa in mapas %}
+    <a class="card-mapa" href="{{ url_for('mapa_detalhe', slug=mapa.slug) }}">
+      <img src="{{ url_for('static', filename='images/' + mapa.imagem) }}" alt="Mapa {{ mapa.nome }}" loading="lazy">
+      <span class="card-mapa-nome">{{ mapa.nome }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="secao reveal">
+  <h2>Guias de missão</h2>
+
+  <a class="cartao-destaque" href="{{ url_for('estrategias') }}">
+    <span class="cartao-destaque-icone">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 14.4 8.6 21 9.3 16 13.7 17.5 20.3 12 16.8 6.5 20.3 8 13.7 3 9.3 9.6 8.6 12 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+    </span>
+    <span class="cartao-destaque-corpo">
+      <span class="cartao-destaque-etiqueta">Guia completo</span>
+      <span class="cartao-destaque-titulo">Michael Myers x Sobreviventes</span>
+      <span class="cartao-destaque-resumo">Poderes, armas, skins e missões offline do killer — itens, NPCs e tipos de fuga dos sobreviventes. Tudo em abas, com os desafios pra completar.</span>
+    </span>
+    <svg class="cartao-destaque-seta" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  {% if guias %}
+  <ul class="lista-guias">
+    {% for guia in guias %}
+    <li>
+      <a class="cartao-guia" href="{{ url_for('guia_detalhe', slug=guia.slug) }}">
+        {% if guia.capa %}<img class="cartao-guia-capa" src="{{ url_for('static', filename=guia.capa) }}" alt="">{% endif %}
+        <span class="cartao-guia-corpo">
+          <span class="cartao-guia-titulo">{{ guia.titulo }}</span>
+          {% if guia.resumo %}<span class="cartao-guia-resumo">{{ guia.resumo }}</span>{% endif %}
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="vazio">Ainda sem guias publicados. Volte em breve.</p>
+  {% endif %}
+</section>
+{% endblock %}

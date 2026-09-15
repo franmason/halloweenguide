@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block titulo %}{{ mapa.nome }} — Mapas{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mapviewer.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+<section class="secao">
+  <a href="{{ url_for('mapas') }}" class="voltar">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Todos os mapas
+  </a>
+  <div class="mapa-topo">
+    <h1>{{ mapa.nome }}</h1>
+    <div class="seletor-mapa">
+      <label for="trocar-mapa">Trocar mapa:</label>
+      <select id="trocar-mapa">
+        {% for m in mapas %}
+        <option value="{{ url_for('mapa_detalhe', slug=m.slug) }}" {% if m.slug == mapa.slug %}selected{% endif %}>{{ m.nome }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="mapa-overlay" id="mapa-overlay"></div>
+  <div class="visor-mapa" id="visor-mapa">
+    <img id="imagem-mapa" src="{{ url_for('static', filename='images/' + mapa.imagem) }}" alt="Mapa {{ mapa.nome }}" draggable="false">
+    <div class="controles-mapa">
+      <button type="button" id="btn-tela-cheia" aria-label="Abrir em tela cheia">
+        <svg class="icone-expandir" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v4M15 4h4a1 1 0 0 1 1 1v4M9 20H5a1 1 0 0 1-1-1v-4M15 20h4a1 1 0 0 0 1-1v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icone-comprimir" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9h4a1 1 0 0 0 1-1V4M20 9h-4a1 1 0 0 1-1-1V4M4 15h4a1 1 0 0 1 1 1v4M20 15h-4a1 1 0 0 0-1 1v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button type="button" id="btn-mais" aria-label="Aumentar zoom">+</button>
+      <button type="button" id="btn-menos" aria-label="Diminuir zoom">−</button>
+      <button type="button" id="btn-reset" aria-label="Resetar zoom">Reset</button>
+    </div>
+  </div>
+  <p class="dica-mapa">Arraste pra mover · Scroll ou pinça pra dar zoom · Toque no ícone pra abrir em tela cheia</p>
+</section>
+
+<script src="{{ url_for('static', filename='js/mapviewer.js') }}"></script>
+<script>
+  document.getElementById('trocar-mapa').addEventListener('change', function () {
+    window.location.href = this.value;
+  });
+</script>
+{% endblock %}

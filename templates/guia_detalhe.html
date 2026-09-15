@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block titulo %}{{ guia.titulo }} — Guia Halloween{% endblock %}
+
+{% block conteudo %}
+<article class="secao guia-conteudo reveal">
+  <a href="{{ url_for('guias') }}" class="voltar">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Todos os guias
+  </a>
+  {% if guia.capa %}
+  <div class="guia-capa">
+    <img src="{{ url_for('static', filename=guia.capa) }}" alt="">
+  </div>
+  {% endif %}
+  <h1 class="titulo-tremulo">{{ guia.titulo }}</h1>
+  {% if guia.resumo %}<p class="guia-resumo">{{ guia.resumo }}</p>{% endif %}
+  <div class="guia-texto">
+    {{ guia.conteudo_html | safe }}
+  </div>
+</article>
+{% endblock %}

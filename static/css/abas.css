@@ -1,0 +1,136 @@
+.abas-principais { margin-top: 1.5rem; }
+
+.abas-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--borda);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+}
+
+.aba-botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--borda);
+  background: var(--fundo-card);
+  color: var(--texto-fraco);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+}
+.aba-botao svg { width: 17px; height: 17px; flex-shrink: 0; }
+.aba-botao:hover { color: var(--texto); border-color: var(--laranja); transform: translateY(-1px); }
+.aba-botao.ativo {
+  color: var(--laranja-claro);
+  border-color: var(--laranja);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+.abas-botoes-grandes .aba-botao { font-size: 1rem; padding: 0.75rem 1.25rem; }
+.abas-botoes-grandes .aba-botao svg { width: 20px; height: 20px; }
+
+.abas-sub .abas-botoes { border-bottom: none; margin-bottom: 1.25rem; padding-bottom: 0; }
+.abas-sub .aba-botao { font-size: 0.85rem; padding: 0.5rem 0.85rem; }
+
+.aba-painel { display: none; animation: aparecer-aba 0.25s ease both; }
+.aba-painel.ativo { display: block; }
+@keyframes aparecer-aba {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.aba-painel h2 {
+  color: var(--laranja-claro);
+  font-size: 1.15rem;
+  margin: 1.75rem 0 0.75rem;
+}
+.aba-painel h2:first-child { margin-top: 0; }
+
+.etiqueta {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--roxo);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 5px;
+  padding: 0.15rem 0.5rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.grade-cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.85rem;
+}
+
+.cartao-info {
+  background: var(--fundo-card);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.cartao-info:hover { border-color: var(--laranja); transform: translateY(-2px); }
+.cartao-info h3 { margin: 0 0 0.4rem; color: var(--texto); font-size: 1rem; }
+.cartao-info p { margin: 0; color: var(--texto-fraco); font-size: 0.92rem; }
+
+.cartao-info-bloqueado { opacity: 0.65; border-style: dashed; }
+.cartao-info-bloqueado:hover { transform: none; border-color: var(--borda); }
+
+.cartao-info-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--borda);
+  color: var(--texto);
+  margin-bottom: 0.75rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.cartao-info-icone svg { width: 22px; height: 22px; }
+.cartao-info:hover .cartao-info-icone { border-color: var(--laranja); background: rgba(255, 255, 255, 0.09); }
+
+.grade-cartoes-compacta { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.grade-cartoes-compacta .cartao-info { padding: 1rem 0.75rem; text-align: center; }
+.grade-cartoes-compacta .cartao-info-icone { margin: 0 auto 0.65rem; }
+.grade-cartoes-compacta h3 { font-size: 0.88rem; }
+
+.lista-objetivos, .lista-capitulos {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--texto-fraco);
+}
+.lista-objetivos li, .lista-capitulos li { margin-bottom: 0.65rem; line-height: 1.55; }
+.lista-objetivos li::marker, .lista-capitulos li::marker { color: var(--sangue); }
+.lista-capitulos { padding-left: 1.4rem; }
+
+.dica-caixa {
+  margin-top: 1.25rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 3px solid var(--sangue);
+  border-radius: 6px;
+  color: var(--texto-fraco);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 600px) {
+  .abas-botoes { gap: 0.4rem; }
+  .aba-botao { font-size: 0.85rem; padding: 0.55rem 0.8rem; }
+  .abas-botoes-grandes .aba-botao { font-size: 0.85rem; padding: 0.6rem 0.85rem; }
+}
