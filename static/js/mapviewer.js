@@ -117,11 +117,43 @@
   var overlay = document.getElementById('mapa-overlay');
   var btnTelaCheia = document.getElementById('btn-tela-cheia');
 
-  function abrirTelaCheia() {
+  function pedirFullscreenNativo() {
+    var pedir = visor.requestFullscreen || visor.webkitRequestFullscreen;
+    if (!pedir) return;
+    var resultado = pedir.call(visor);
+    if (resultado && resultado.then) {
+      resultado.then(travarPaisagem).catch(function () {});
+    } else {
+      // Safari antigo dispara webkitfullscreenchange em vez de retornar promise
+      travarPaisagem();
+    }
+  }
+
+  function travarPaisagem() {
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(function () {});
+    }
+  }
+
+  function destravarOrientacao() {
+    if (screen.orientation && screen.orientation.unlock) {
+      try { screen.orientation.unlock(); } catch (e) {}
+    }
+  }
+
+  function sairFullscreenNativo() {
+    var elementoAtivo = document.fullscreenElement || document.webkitFullscreenElement;
+    if (!elementoAtivo) return;
+    var sair = document.exitFullscreen || document.webkitExitFullscreen;
+    if (sair) sair.call(document).catch(function () {});
+  }
+
+  function abrirTelaCheia(comFullscreenNativo) {
     visor.classList.add('tela-cheia');
     overlay.classList.add('ativo');
     document.body.classList.add('mapa-tela-cheia-ativa');
     btnTelaCheia.setAttribute('aria-label', 'Sair da tela cheia');
+    if (comFullscreenNativo) pedirFullscreenNativo();
   }
 
   function fecharTelaCheia() {
@@ -129,16 +161,41 @@
     overlay.classList.remove('ativo');
     document.body.classList.remove('mapa-tela-cheia-ativa');
     btnTelaCheia.setAttribute('aria-label', 'Abrir em tela cheia');
+    sairFullscreenNativo();
+    destravarOrientacao();
   }
 
   if (btnTelaCheia && overlay) {
     btnTelaCheia.addEventListener('click', function () {
-      visor.classList.contains('tela-cheia') ? fecharTelaCheia() : abrirTelaCheia();
+      visor.classList.contains('tela-cheia') ? fecharTelaCheia() : abrirTelaCheia(true);
     });
     overlay.addEventListener('click', fecharTelaCheia);
     window.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') fecharTelaCheia();
     });
+
+    // Se o fullscreen nativo for encerrado por fora (gesto do sistema, botão
+    // voltar do Android etc.), sincroniza nossa visualização com esse estado.
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (evento) {
+      document.addEventListener(evento, function () {
+        var ativo = document.fullscreenElement || document.webkitFullscreenElement;
+        if (!ativo && visor.classList.contains('tela-cheia')) {
+          visor.classList.remove('tela-cheia');
+          overlay.classList.remove('ativo');
+          document.body.classList.remove('mapa-tela-cheia-ativa');
+          btnTelaCheia.setAttribute('aria-label', 'Abrir em tela cheia');
+          destravarOrientacao();
+        }
+      });
+    });
+
+    // No celular, o mapa já abre em tela cheia — não precisa tocar no botão.
+    // (Não pede o fullscreen nativo aqui porque o navegador exige um toque
+    // do usuário pra isso; o botão continua disponível pra ativar o modo
+    // sem barra de endereço e tentar travar a tela em paisagem.)
+    if (window.matchMedia('(max-width: 720px)').matches) {
+      abrirTelaCheia(false);
+    }
   }
 
   // Double click / double tap pra dar zoom rápido
